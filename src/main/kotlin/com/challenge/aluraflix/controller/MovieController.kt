@@ -1,6 +1,7 @@
 package com.challenge.aluraflix.controller
 
 import com.challenge.aluraflix.domain.Movie
+import com.challenge.aluraflix.dto.MovieDTO
 import com.challenge.aluraflix.exceptions.MovieNotFoundException
 import com.challenge.aluraflix.repository.MovieRepository
 import com.challenge.aluraflix.service.MovieService
@@ -19,8 +20,8 @@ class MovieController (val movieService: MovieService) {
      * create movies
      */
     @PostMapping()
-    fun create (@RequestBody movie: Movie): ResponseEntity<Unit> {
-        movieService.create(movie)
+    fun create (@RequestBody movieDTO: MovieDTO): ResponseEntity<Unit> {
+        movieService.create(movieDTO)
         return ResponseEntity(Unit,HttpStatus.CREATED)
     }
 
@@ -69,7 +70,7 @@ class MovieController (val movieService: MovieService) {
      */
     @GetMapping("")
     fun getAll(@RequestParam(required = false, defaultValue = "0") start: Int,
-               @RequestParam(required = false, defaultValue = "3") size: Int ): ResponseEntity<List<Movie>> {
+               @RequestParam(required = false, defaultValue = "10") size: Int ): ResponseEntity<List<Movie>> {
 
         val list = this.movieService.getAll(start,size)
         val status = if(list.isEmpty()) HttpStatus.NOT_FOUND else HttpStatus.OK

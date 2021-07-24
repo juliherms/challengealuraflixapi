@@ -1,5 +1,6 @@
 package com.challenge.aluraflix.service
 
+import com.challenge.aluraflix.converter.MovieDTOConverter
 import com.challenge.aluraflix.domain.Movie
 import com.challenge.aluraflix.dto.MovieDTO
 import com.challenge.aluraflix.repository.MovieRepository
@@ -12,12 +13,15 @@ import org.springframework.stereotype.Service
  * This class responsible to implements business logic from movies
  */
 @Service
-class MovieService(val movieRepository: MovieRepository) {
+class MovieService(
+    val movieRepository: MovieRepository,
+    val movieDTOConverter: MovieDTOConverter
+    ) {
 
     /**
      * Method responsible to create movie
      */
-    fun create(movie: Movie) = this.movieRepository.save(movie)
+    fun create(movieDTO: MovieDTO) = this.movieRepository.save(movieDTOConverter.map(movieDTO))
 
     /**
      * Convert MovieDTO to Movie
@@ -50,7 +54,7 @@ class MovieService(val movieRepository: MovieRepository) {
     /**
      * Method responsible to update movie
      */
-    fun update(id: Long, movie:Movie) = create(movie)
+    fun update(id: Long, movie:Movie) = this.movieRepository.save(movie)
 }
 
 
