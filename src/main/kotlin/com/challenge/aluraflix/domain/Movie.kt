@@ -12,7 +12,7 @@ import javax.persistence.Id
 data class Movie (
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long =1L,
+    val id: Long =0L,
     val title:String = "",
     val description:String = "",
     val url:String = ""
