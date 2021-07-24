@@ -24,16 +24,6 @@ class MovieService(
     fun create(movieDTO: MovieDTO) = this.movieRepository.save(movieDTOConverter.map(movieDTO))
 
     /**
-     * Convert MovieDTO to Movie
-     */
-    fun convertDtoToMovie(movieDTO: MovieDTO) : Movie = Movie(movieDTO.id,movieDTO.title,movieDTO.description,movieDTO.url)
-
-    /**
-     * Save movie
-     */
-    fun persist(movieDTO: MovieDTO) : Movie = movieRepository.save(convertDtoToMovie(movieDTO))
-
-    /**
      * Method responsible to list all movies
      */
     fun getAll(start: Int, size: Int): List<Movie> {
