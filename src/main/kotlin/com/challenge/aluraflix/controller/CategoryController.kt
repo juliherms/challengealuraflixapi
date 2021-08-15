@@ -1,6 +1,7 @@
 package com.challenge.aluraflix.controller
 
 import com.challenge.aluraflix.domain.Category
+import com.challenge.aluraflix.domain.Movie
 import com.challenge.aluraflix.dto.CategoryDTO
 import com.challenge.aluraflix.exceptions.MovieNotFoundException
 import com.challenge.aluraflix.service.CategoryService
@@ -31,6 +32,14 @@ class CategoryController  (val categoryService: CategoryService) {
     fun getById(@PathVariable id: Long): ResponseEntity<Category?> {
         var category = categoryService.getById(id) ?: throw MovieNotFoundException("category ${id} not found")
         return ResponseEntity(category,HttpStatus.OK)
+    }
+
+    @GetMapping("/{id}/movies/")
+    fun getMoviesByCategory(@PathVariable id: Long): ResponseEntity<List<Movie>> {
+
+        var list = categoryService.getMoviesByCategory(id)
+        val status = if(list.isEmpty()) HttpStatus.NOT_FOUND else HttpStatus.OK
+        return ResponseEntity(list,status)
     }
 
     /**

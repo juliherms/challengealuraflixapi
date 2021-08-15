@@ -2,8 +2,10 @@ package com.challenge.aluraflix.service
 
 import com.challenge.aluraflix.converter.CategoryDTOConverter
 import com.challenge.aluraflix.domain.Category
+import com.challenge.aluraflix.domain.Movie
 import com.challenge.aluraflix.dto.CategoryDTO
 import com.challenge.aluraflix.repository.CategoryRepository
+import com.challenge.aluraflix.repository.MovieRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -16,7 +18,8 @@ import org.springframework.stereotype.Service
 @Service
 class CategoryService(
     val categoryRepository: CategoryRepository,
-    val categoryDTOConverter: CategoryDTOConverter
+    val categoryDTOConverter: CategoryDTOConverter,
+    val movieRepository: MovieRepository
     ) {
 
     /**
@@ -47,7 +50,9 @@ class CategoryService(
      */
     fun update(id: Long, category: Category) = this.categoryRepository.save(category)
 
-/*    fun getVideosCategorias(pageable: Pageable): Page<Category> {
-        return agrupamentoVideosCategoriaRepository.findAll(paginacao)
-    } */
+    fun getMoviesByCategory(idCategory: Long): List<Movie> {
+        val category = Category()
+        category.id = idCategory
+        return movieRepository.findByCategory(category)
+    }
 }

@@ -12,7 +12,7 @@ import javax.persistence.Id
 data class Category (
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id:  Long? = null,
+    var id:  Long? = null,
     val title:String = "",
     val color:String = "",
 ){

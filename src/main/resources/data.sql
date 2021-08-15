@@ -6,5 +6,6 @@ INSERT INTO tb_movie (title, description,url,id_category) VALUES ('movie2', 'des
 INSERT INTO tb_movie (title, description,url,id_category) VALUES ('movie3', 'descriotion4',"www.google.com.br",1);
 INSERT INTO tb_movie (title, description,url,id_category) VALUES ('movie4', 'descriotion5',"www.google.com.br",1);
 INSERT INTO tb_movie (title, description,url,id_category) VALUES ('movie5', 'descriotion6',"www.google.com.br",1);
+INSERT INTO tb_movie (title, description,url,id_category) VALUES ('movie6', 'descriotion6',"www.google.com.br",2);
 
 
