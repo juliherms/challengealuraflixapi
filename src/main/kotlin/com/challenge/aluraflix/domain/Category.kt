@@ -15,4 +15,9 @@ data class Category (
     val id:  Long? = null,
     val title:String = "",
     val color:String = "",
-)
+){
+    override fun toString(): String {
+        return "Category(id=$id, title='$title', color='$color')"
+    }
+}
+

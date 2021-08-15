@@ -13,11 +13,12 @@ data class Movie (
     val title:String = "",
     val description:String = "",
     val url:String = "",
-    @Column(name = "id_category")
-    val idCategory: Long? = null
+    @ManyToOne()
+    @JoinColumn(name = "id_category", referencedColumnName = "id")
+    val category: Category? = null
 ) {
     override fun toString(): String {
-        return "Movie(id=$id, title='$title', description='$description', url='$url', idCategory=$idCategory)"
+        return "Movie(id=$id, title='$title', description='$description', url='$url', idCategory=${category?.id})"
     }
 
 }
