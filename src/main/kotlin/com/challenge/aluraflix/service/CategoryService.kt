@@ -4,6 +4,7 @@ import com.challenge.aluraflix.converter.CategoryDTOConverter
 import com.challenge.aluraflix.domain.Category
 import com.challenge.aluraflix.dto.CategoryDTO
 import com.challenge.aluraflix.repository.CategoryRepository
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
@@ -45,4 +46,8 @@ class CategoryService(
      * Method responsible to update category
      */
     fun update(id: Long, category: Category) = this.categoryRepository.save(category)
+
+/*    fun getVideosCategorias(pageable: Pageable): Page<Category> {
+        return agrupamentoVideosCategoriaRepository.findAll(paginacao)
+    } */
 }

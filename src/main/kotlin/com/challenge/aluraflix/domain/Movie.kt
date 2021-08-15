@@ -1,9 +1,6 @@
 package com.challenge.aluraflix.domain
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * this class responsible to represents movies
@@ -12,8 +9,15 @@ import javax.persistence.Id
 data class Movie (
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long =0L,
+    val id:  Long? = null,
     val title:String = "",
     val description:String = "",
-    val url:String = ""
-)
+    val url:String = "",
+    @Column(name = "id_category")
+    val idCategory: Long? = null
+) {
+    override fun toString(): String {
+        return "Movie(id=$id, title='$title', description='$description', url='$url', idCategory=$idCategory)"
+    }
+
+}
