@@ -1,4 +1,4 @@
-INSERT INTO tb_category (title, color) VALUES ('top 10', 'red');
+INSERT INTO tb_category (title, color) VALUES ('Free', 'white');
 INSERT INTO tb_category (title, color) VALUES ('kids','green');
 
 INSERT INTO tb_movie (title, description,url,id_category) VALUES ('movie1', 'descriotion1',"www.google.com.br",1);

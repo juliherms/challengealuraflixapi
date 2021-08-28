@@ -3,6 +3,7 @@ package com.challenge.aluraflix.service
 import com.challenge.aluraflix.converter.MovieDTOConverter
 import com.challenge.aluraflix.domain.Movie
 import com.challenge.aluraflix.dto.MovieDTO
+import com.challenge.aluraflix.repository.CategoryRepository
 import com.challenge.aluraflix.repository.MovieRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -15,13 +16,23 @@ import org.springframework.stereotype.Service
 @Service
 class MovieService(
     val movieRepository: MovieRepository,
+    val categoryRepository: CategoryRepository,
     val movieDTOConverter: MovieDTOConverter
     ) {
 
     /**
      * Method responsible to create movie
      */
-    fun create(movieDTO: MovieDTO) = this.movieRepository.save(movieDTOConverter.map(movieDTO))
+    fun create(movieDTO: MovieDTO) {
+        val movie: Movie = movieDTOConverter.map(movieDTO);
+
+        //business role - when category for movie is null...apply free category
+        if(movie.category == null){
+            movie.category = categoryRepository.findById(1L).get();
+        }
+
+        this.movieRepository.save(movie);
+    }
 
     /**
      * Method responsible to list all movies

@@ -15,7 +15,7 @@ data class Movie (
     val url:String = "",
     @ManyToOne()
     @JoinColumn(name = "id_category", referencedColumnName = "id")
-    val category: Category? = null
+    var category: Category? = null
 ) {
     override fun toString(): String {
         return "Movie(id=$id, title='$title', description='$description', url='$url', idCategory=${category?.id})"
