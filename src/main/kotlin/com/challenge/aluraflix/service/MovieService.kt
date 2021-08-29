@@ -25,12 +25,7 @@ class MovieService(
      */
     fun create(movieDTO: MovieDTO) {
         val movie: Movie = movieDTOConverter.map(movieDTO);
-
-        //business role - when category for movie is null...apply free category
-        if(movie.category == null){
-            movie.category = categoryRepository.findById(1L).get();
-        }
-
+        checkCategory(movie);
         this.movieRepository.save(movie);
     }
 
@@ -56,6 +51,16 @@ class MovieService(
      * Method responsible to update movie
      */
     fun update(id: Long, movie:Movie) = this.movieRepository.save(movie)
+
+    /**
+     * Method responsible to check Category is empty and apply free category
+     */
+    fun checkCategory(movie: Movie){
+        if(movie.category == null){
+            movie.category = categoryRepository.findById(1L).get();
+        }
+    }
+
 }
 
 
